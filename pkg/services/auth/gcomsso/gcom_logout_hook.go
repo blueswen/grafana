@@ -8,10 +8,10 @@ import (
 	"log/slog"
 	"net/http"
 
-	"github.com/grafana/grafana-plugin-sdk-go/backend/httpclient"
 	"github.com/grafana/grafana/pkg/apimachinery/identity"
 	"github.com/grafana/grafana/pkg/models/usertoken"
 	"github.com/grafana/grafana/pkg/setting"
+	"github.com/grafana/grafana/pkg/util/httpclient"
 )
 
 type gcomLogoutRequest struct {
@@ -49,7 +49,7 @@ func (s *GComSSOService) LogoutHook(ctx context.Context, user identity.Requester
 	hReq.Header.Add("Content-Type", "application/json")
 	hReq.Header.Add("Authorization", "Bearer "+s.cfg.GrafanaComSSOAPIToken)
 
-	c := http.Client{Transport: httpclient.NewHTTPTransport()}
+	c := httpclient.New()
 	resp, err := c.Do(hReq)
 	if err != nil {
 		s.logger.Error("failed to send request", "error", err)

@@ -11,8 +11,8 @@ import (
 	"time"
 
 	"github.com/centrifugal/centrifuge"
-	"github.com/grafana/grafana-plugin-sdk-go/backend/httpclient"
 	"github.com/grafana/grafana-plugin-sdk-go/data"
+	"github.com/grafana/grafana/pkg/util/httpclient"
 
 	"github.com/grafana/grafana/pkg/services/live/managedstream"
 )
@@ -64,7 +64,7 @@ func postTestData() {
 		}
 		jsonData, _ := json.Marshal(d)
 		log.Println(string(jsonData))
-		httpClient := http.Client{Transport: httpclient.NewHTTPTransport()}
+		httpClient := httpclient.New()
 
 		req, _ := http.NewRequest("POST", "http://localhost:3000/api/live/pipeline/push/stream/json/auto", bytes.NewReader(jsonData))
 		req.Header.Set("Authorization", "Bearer "+os.Getenv("GF_TOKEN"))

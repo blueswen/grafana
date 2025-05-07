@@ -9,12 +9,12 @@ import (
 
 	"github.com/google/uuid"
 
-	"github.com/grafana/grafana-plugin-sdk-go/backend/httpclient"
 	"github.com/grafana/grafana/pkg/api/routing"
 	"github.com/grafana/grafana/pkg/infra/log"
 	"github.com/grafana/grafana/pkg/services/contexthandler/ctxkey"
 	contextmodel "github.com/grafana/grafana/pkg/services/contexthandler/model"
 	"github.com/grafana/grafana/pkg/services/user"
+	"github.com/grafana/grafana/pkg/util/httpclient"
 	"github.com/grafana/grafana/pkg/web"
 )
 
@@ -52,7 +52,7 @@ func NewServer(t testing.TB, routeRegister routing.RouteRegister) *Server {
 		RouteRegister: routeRegister,
 		Mux:           m,
 		TestServer:    testServer,
-		HttpClient:    &http.Client{Transport: httpclient.NewHTTPTransport()},
+		HttpClient:    httpclient.New(),
 	}
 }
 

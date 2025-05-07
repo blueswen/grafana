@@ -6,7 +6,7 @@ import (
 	"net/http"
 	"sync/atomic"
 
-	"github.com/grafana/grafana-plugin-sdk-go/backend/httpclient"
+	"github.com/grafana/grafana/pkg/util/httpclient"
 )
 
 var errBytesLimitExceeded = fmt.Errorf("bytes limit exceeded")

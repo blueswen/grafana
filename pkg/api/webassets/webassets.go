@@ -10,10 +10,10 @@ import (
 	"path/filepath"
 	"sync"
 
-	"github.com/grafana/grafana-plugin-sdk-go/backend/httpclient"
 	"github.com/grafana/grafana/pkg/api/dtos"
 	"github.com/grafana/grafana/pkg/services/licensing"
 	"github.com/grafana/grafana/pkg/setting"
+	"github.com/grafana/grafana/pkg/util/httpclient"
 )
 
 type ManifestInfo struct {
